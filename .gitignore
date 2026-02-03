@@ -1,0 +1,87 @@
+## ASP.NET Core
+bin/
+obj/
+**/[Bb]in/
+**/[Oo]bj/
+**/packages/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio
+.vs/
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Rider
+*.sln.iml
+
+# User files
+*.rsuser
+*.userprefs
+
+# Build output
+/publish/
+*.pubxml
+
+# Dependencies
+/node_modules/
+/.npm
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# NuGet
+**/packages/
+*.nupkg
+nuget.exe
+**/NuGetPackages/
+
+# MSTest
+**/[Tt]est[Rr]esult*/
+**/[Bb]uild[Ll]og.*
+
+# VS Code
+.vscode/*
+
+# Rider
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Runtime
+**/runtimes/
+
+# Logs
+*.log
+logs/
+
+# Database
+*.mdf
+*.ldf
+
+# App-specific (añade según necesites)
+appsettings.Development.json
