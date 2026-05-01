@@ -1,0 +1,65 @@
+@model IEnumerable<GuayabitosMvc.Models.Proveedores>
+@{
+    ViewData["Title"] = "Proveedores";
+}
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.22.6/dist/bootstrap-table.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=delete" />
+<br>
+<div class="col-md-12">
+    <a href="/Proveedores/Create" class="btn btn-success" onclick="window.location.href='/Proveedores/Create'; return false;">
+        <i class="fa fa-plus me-2"></i> Nuevo Proveedor
+    </a>
+</div>
+
+<div class="content-wrapper">
+    <div class="container p-5 my-5 border">
+        <div class="table-responsive">
+            <table id="pagination" class="ui celled table table-striped table-hover" data-toggle="table"
+                   data-pagination="true" data-search="true" data-page-size="10" data-page-list="[5, 10, 25, 50, all]"
+                   data-locale="es-ES">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.IdProveedor)
+                        </th>
+                        <th>@Html.DisplayNameFor(model => model.Nombre)</th>
+                        <th>@Html.DisplayNameFor(model => model.Apellido)
+                        </th>
+                        <th>@Html.DisplayNameFor(model => model.telefono)</th>
+                        <th>@Html.DisplayNameFor(model => model.direccion)</th>
+                        <th>@Html.DisplayNameFor(model => model.FechaRegistro)</th>
+                        <th>Acccion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.IdProveedor)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Apellido)</td>
+                            <td>@Html.DisplayFor(modelItem => item.telefono)</td>
+                            <td>@Html.DisplayFor(modelItem => item.direccion)</td>
+                            <td>@Html.DisplayFor(modelItem => item.FechaRegistro)</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.IdProveedor" class="btn btn-sm btn-warning">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a asp-action="Details" asp-route-id="@item.IdProveedor" class="btn btn-sm btn-info">
+                                    <i class="fa fa-info-circle"></i>
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.IdProveedor" class="btn btn-sm btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <!-- Bootstrap Table JS -->
+    <script src="https://unpkg.com/bootstrap-table@1.22.6/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.22.6/dist/locale/bootstrap-table-es-ES.min.js"></script>
+}

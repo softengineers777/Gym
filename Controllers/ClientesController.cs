@@ -45,15 +45,49 @@ namespace GuayabitosMvc.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdCliente,Nombre,Telefono,email,fecha_registro")] Clientes clientes)
+        public async Task<IActionResult> CreateMultiple(List<Clientes> clientes)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _context.Add(clientes);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (clientes == null)
+                {
+                    Console.WriteLine("Si llego el contenido  clientes");
+                    TempData["Error"] = "No se recibieron  datos del  formulario";
+                    return RedirectToAction(nameof(Index));
+                }
+                Console.WriteLine($"Clientes no es  null. cantidad: {clientes.Count}");
+                for (int i = 0; i < clientes.Count; i++)
+                {
+                    var c = clientes[i];
+                    Console.WriteLine($"Cliente {i}: Nombre = '{c?.Nombre}',telefono= '{c?.Telefono}', email = '{c?.email}',");
+                }
+
+                var clientesValidos = clientes.Where(c => !String.IsNullOrEmpty(c.Nombre)).ToList();
+
+                if (clientesValidos.Any())
+                {
+                    foreach (var cliente in clientesValidos)
+                    {
+                        if (cliente.fecha_registro == default)
+                        {
+                            cliente.fecha_registro = DateTime.Now;
+                        }
+                        _context.Clientes.Add(cliente);
+                    }
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    TempData["Error"] = "Nose recibieron clientes validos para  guardar";
+                }
             }
-            return View(clientes);
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error:{ex.Message}");
+                Console.WriteLine($"detalle:{ex.StackTrace}");
+                TempData["Error"] = $"Error: {ex.Message}";
+            }
+            return RedirectToAction(nameof(Index));
         }
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
@@ -69,6 +103,8 @@ namespace GuayabitosMvc.Controllers
             }
             return View(clientes);
         }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("IdCliente,Nombre,Telefono,email,fecha_registro")] Clientes clientes)
@@ -104,19 +140,19 @@ namespace GuayabitosMvc.Controllers
             return _context.Clientes.Any(m => m.IdCliente == id);
         }
         [HttpGet]
-        public async Task<IActionResult> Delete (int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
             var clientes = await _context.Clientes
-            .FirstOrDefaultAsync(m =>m.IdCliente == id);
+            .FirstOrDefaultAsync(m => m.IdCliente == id);
             if (clientes == null)
             {
                 return NotFound();
             }
-            return View (clientes);
+            return View(clientes);
         }
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -132,7 +168,42 @@ namespace GuayabitosMvc.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        
+        public async Task<IActionResult> ImportarExcel(IFormFile archivo)
+        {
+            if (archivo == null || archivo.Length == 0)
+            {
+                TempData["Error"] = "Debe seleccionar un archivo";
+                return RedirectToAction(nameof(Index));
+            }
+
+            var clientes = new List<Clientes>();
+
+            using (var reader = new StreamReader(archivo.OpenReadStream()))
+            {
+                // Leer CSV o Excel
+                while (!reader.EndOfStream)
+                {
+                    var line = await reader.ReadLineAsync();
+                    var values = line.Split(',');
+
+                    var cliente = new Clientes
+                    {
+                        Nombre = values[0],
+                        Telefono = values[1],
+                        email = values[2],
+                        fecha_registro = DateTime.Now
+                    };
+                    clientes.Add(cliente);
+                }
+            }
+
+            _context.Clientes.AddRange(clientes);
+            await _context.SaveChangesAsync();
+
+            TempData["Success"] = $"{clientes.Count} clientes importados";
+            return RedirectToAction(nameof(Index));
+        }
+
 
 
 
