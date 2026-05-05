@@ -1,0 +1,69 @@
+@model IEnumerable<GuayabitosMvc.Models.Detalle_Venta>
+@{
+    ViewData["Title"] = "Detalle Venta";
+}
+
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.22.6/dist/bootstrap-table.min.css">
+<br>
+<div class="col-md-12">
+    <a href="/Detalle_Venta/Create" class="btn btn-success"
+           onclick="window.location.href='/Detalle_Venta/Create'; return false;">
+        <i class="fa fa-plus me-2"></i> Nuevo Detalle Venta
+    </a>
+</div>
+
+<div class="content-wrapper">
+    <div class="container p-5 my-5 border">
+        <div class="table-responsive">
+            <table id="pagination" class="ui celled table table-striped table-hover" data-toggle="table"
+                   data-pagination="true" data-search="true" data-page-size="10" data-page-list="[5, 10, 25, 50, all]"
+                   data-locale="es-ES">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.IdDetalleV)
+                        </th>
+                        <th>@Html.DisplayNameFor(model => model.IdVenta)</th>
+                        <th>@Html.DisplayNameFor(model => model.IdProducto)
+                        </th>
+                        <th>@Html.DisplayNameFor(model => model.precio_unitario)</th>
+                        <th>@Html.DisplayNameFor(model => model.Cantidad)</th>
+                        <th>@Html.DisplayNameFor(model => model.subTotal)</th>
+
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.IdDetalleV)</td>
+                            <td>@Html.DisplayFor(modelItem => item.IdVenta)</td>
+                            <td>@Html.DisplayFor(modelItem => item.IdProducto)</td>
+                            <td>@Html.DisplayFor(modelItem => item.precio_unitario)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Cantidad)</td>
+                            <td>@Html.DisplayFor(modelItem => item.subTotal)</td>
+
+                           
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.IdDetalleV" class="btn btn-sm btn-warning">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a asp-action="Details" asp-route-id="@item.IdDetalleV" class="btn btn-sm btn-info">
+                                    <i class="fa fa-info-circle"></i>
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.IdDetalleV" class="btn btn-sm btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <!-- Bootstrap Table JS -->
+    <script src="https://unpkg.com/bootstrap-table@1.22.6/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.22.6/dist/locale/bootstrap-table-es-ES.min.js"></script>
+}

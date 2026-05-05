@@ -1,0 +1,61 @@
+@model IEnumerable<GuayabitosMvc.Models.Compras>
+@{
+    ViewData["Title"] = "Productos";
+}
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.22.6/dist/bootstrap-table.min.css">
+<br>
+<div class="col-md-12">
+    <a href="/Productos/Create" class="btn btn-success" onclick="window.location.href='/Productos/Create'; return false;">
+        <i class="fa fa-plus me-2"></i> Nuevo Compra
+    </a>
+</div>
+
+<div class="content-wrapper">
+    <div class="container p-5 my-5 border">
+        <div class="table-responsive">
+            <table id="pagination" class="ui celled table table-striped table-hover" data-toggle="table"
+                   data-pagination="true" data-search="true" data-page-size="10" data-page-list="[5, 10, 25, 50, all]"
+                   data-locale="es-ES">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.IdCompras)
+                        </th>
+                        <th>@Html.DisplayNameFor(model => model.IdProveedor)</th>
+                        <th>@Html.DisplayNameFor(model => model.fecha_compra)
+                        </th>
+                        <th>@Html.DisplayNameFor(model => model.total)</th>
+                        <th>@Html.DisplayNameFor(model => model.estado)</th>
+                        <th>Acccion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.IdCompras)</td>
+                            <td>@Html.DisplayFor(modelItem => item.IdProveedor)</td>
+                            <td>@Html.DisplayFor(modelItem => item.fecha_compra)</td>
+                            <td>@Html.DisplayFor(modelItem => item.estado)</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.IdCompras" class="btn btn-sm btn-warning">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a asp-action="Details" asp-route-id="@item.IdCompras" class="btn btn-sm btn-info">
+                                    <i class="fa fa-info-circle"></i>
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.IdCompras" class="btn btn-sm btn-danger">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <!-- Bootstrap Table JS -->
+    <script src="https://unpkg.com/bootstrap-table@1.22.6/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.22.6/dist/locale/bootstrap-table-es-ES.min.js"></script>
+}

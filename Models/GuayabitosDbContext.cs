@@ -22,6 +22,11 @@ namespace GuayabitosMvc.Models
         public DbSet<Proveedores> Proveedores { get; set; }
         public DbSet<Empleados> Empleados { get; set; }
         public DbSet<Productos> Productos { get; set; }
+        public DbSet<Detalle_Venta> Detalle_Venta { get; set; }
+        public DbSet<Cabecera_Ventas> Cabecera_Ventas { get; set; }
+        public DbSet<MovimientoInventario> MovimientoInventario { get; set; }
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -76,8 +81,43 @@ namespace GuayabitosMvc.Models
                 entity.Property(p => p.categoria);
                 entity.Property(p => p.precio);
                 entity.Property(p => p.fecha_registro);
-            }
-            );
+            });
+            modelBuilder.Entity<Detalle_Venta>(entity =>
+            {
+                entity.HasKey(d => d.IdDetalleV);
+                entity.HasKey(d => d.IdVenta);
+                entity.HasKey(d => d.IdProducto);
+                entity.HasKey(d => d.Cantidad);
+                entity.HasKey(d => d.precio_unitario);
+                entity.HasKey(d => d.subTotal);
+            });
+            modelBuilder.Entity<Cabecera_Ventas>(entity =>
+            {
+                entity.HasKey(c => c.IdVenta);
+                entity.Property(c => c.Codigo_Venta);
+                entity.Property(c => c.IdEmpleado);
+                entity.Property(c => c.IdCliente);
+                entity.Property(c => c.Fecha_Venta);
+                entity.Property(c => c.SubTotal);
+                entity.Property(c => c.Impuesto);
+                entity.Property(c => c.forma_pago);
+                entity.Property(c => c.estado);
+            });
+            modelBuilder.Entity<MovimientoInventario>(entity =>
+            {
+                entity.HasKey(m => m.IdInventarios);
+                entity.Property(m => m.IdProducto);
+                entity.Property(m => m.tipo_Movimiento);
+                entity.Property(m => m.cantidad);
+                entity.Property(m => m.precio_unitario);
+                entity.Property(m => m.total);
+                entity.Property(m => m.motivo);
+                entity.Property(m => m.fechas_Movimiento);
+                entity.Property(m => m.IdEmpleado);
+                entity.Property(m => m.referencia);
+
+
+            });
         }
     }
 }
