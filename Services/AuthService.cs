@@ -1,4 +1,3 @@
-cat > Services/AuthService.cs << 'EOF'
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,7 +20,6 @@ namespace GuayabitosMvc.Services
             _httpContextAccessor = httpContextAccessor;
         }
         
-        // Generar Salt aleatorio
         private string GenerarSalt()
         {
             var saltBytes = new byte[32];
@@ -32,7 +30,6 @@ namespace GuayabitosMvc.Services
             return Convert.ToBase64String(saltBytes);
         }
         
-        // Generar Hash de contraseña con Salt
         private string GenerarHash(string contrasenia, string salt)
         {
             using (var sha256 = SHA256.Create())
@@ -43,14 +40,12 @@ namespace GuayabitosMvc.Services
             }
         }
         
-        // Verificar contraseña
         private bool VerificarContrasenia(string contraseniaIngresada, string hashAlmacenado, string salt)
         {
             var hashCalculado = GenerarHash(contraseniaIngresada, salt);
             return hashCalculado == hashAlmacenado;
         }
         
-        // Método de LOGIN
         public async Task<(bool exito, string mensaje, Usuarios usuario)> LoginAsync(string nombreUsuario, string contrasenia)
         {
             var usuario = await _context.Usuarios
@@ -84,31 +79,26 @@ namespace GuayabitosMvc.Services
                 return (false, "Usuario o contraseña incorrectos", null);
             }
             
-            // Login exitoso
             usuario.Intentos_Fallidos = 0;
             usuario.ultimo_Acceso = DateTime.Now;
             await _context.SaveChangesAsync();
             
-            // Guardar en sesión
             _httpContextAccessor.HttpContext.Session.SetInt32("UserId", usuario.IdUsuario);
             _httpContextAccessor.HttpContext.Session.SetString("UserName", usuario.NombreUsuario);
             
             return (true, "Login exitoso", usuario);
         }
         
-        // Cerrar sesión
         public void Logout()
         {
             _httpContextAccessor.HttpContext.Session.Clear();
         }
         
-        // Verificar si hay usuarios en el sistema
         public async Task<bool> HayUsuariosAsync()
         {
             return await _context.Usuarios.AnyAsync();
         }
         
-        // Obtener el usuario actualmente logueado
         public async Task<Usuarios> GetUsuarioActualAsync()
         {
             var userId = _httpContextAccessor.HttpContext.Session.GetInt32("UserId");
@@ -117,4 +107,3 @@ namespace GuayabitosMvc.Services
         }
     }
 }
-EOF

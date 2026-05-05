@@ -25,6 +25,10 @@ namespace GuayabitosMvc.Models
         public DbSet<Detalle_Venta> Detalle_Venta { get; set; }
         public DbSet<Cabecera_Ventas> Cabecera_Ventas { get; set; }
         public DbSet<MovimientoInventario> MovimientoInventario { get; set; }
+        public DbSet<Usuarios> Usuarios { get; set; }
+
+
+    
 
 
 
@@ -115,8 +119,21 @@ namespace GuayabitosMvc.Models
                 entity.Property(m => m.fechas_Movimiento);
                 entity.Property(m => m.IdEmpleado);
                 entity.Property(m => m.referencia);
-
-
+            });
+            modelBuilder.Entity<Usuarios>(entity =>
+            {
+               entity.HasKey(u=> u.IdUsuario);
+               entity.Property(u => u.IdEmpleado); 
+               entity.Property(u => u.NombreUsuario); 
+               entity.Property(u => u.Contraseña_Hash); 
+               entity.Property(u => u.Contraseña_salt); 
+               entity.Property(u => u.Fecha_Creacion); 
+               entity.Property(u => u.ultimo_Acceso); 
+               entity.Property(u => u.Intentos_Fallidos); 
+               entity.Property(u => u.Bloqueado); 
+               entity.Property(u => u.debe_cambiar_contraseña); 
+               entity.Property(u => u.expriracion_contraseña); 
+               entity.Property(u => u.Activo); 
             });
         }
     }
