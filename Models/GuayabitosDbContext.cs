@@ -26,6 +26,7 @@ namespace GuayabitosMvc.Models
         public DbSet<Cabecera_Ventas> Cabecera_Ventas { get; set; }
         public DbSet<MovimientoInventario> MovimientoInventario { get; set; }
         public DbSet<Usuarios> Usuarios { get; set; }
+        public DbSet<Permisos> Permisos { get; set; }
 
 
     
@@ -134,6 +135,13 @@ namespace GuayabitosMvc.Models
                entity.Property(u => u.debe_cambiar_contraseña); 
                entity.Property(u => u.expriracion_contraseña); 
                entity.Property(u => u.Activo); 
+            });
+            modelBuilder.Entity<Permisos>(entity =>
+            {
+                entity.HasKey(p=>p.IdPermisos);
+                entity.Property(p=>p.Nombre);
+                entity.Property(p=>p.Codigo);
+                entity.Property(p=>p.Descripcion);                
             });
         }
     }
