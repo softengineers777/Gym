@@ -203,11 +203,5 @@ namespace GuayabitosMvc.Controllers
             TempData["Success"] = $"{clientes.Count} clientes importados";
             return RedirectToAction(nameof(Index));
         }
-
-
-
-
-
-
     }
 }
