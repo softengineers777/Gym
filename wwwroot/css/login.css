@@ -1,6 +1,6 @@
 :root {
-    --bg-color-page:#4A148C;
-    --bg-color-btn:#4548ad;
+    --bg-color-page:#020202;
+    --bg-color-btn:#762fd7;
     --bg-color-btn-hover:#191b6b;
     font-size: 16px;
     --size-sm:0.5rem;
@@ -32,7 +32,7 @@ a{
 }
 #right-container{
     background-color: var(--bg-color-page);
-    background-image: url(../img/grupo.png);
+    background-image: url(../img/logoGuayabito.jpeg);
     background-size: 70%;
     background-repeat: no-repeat;
     background-position: center;
@@ -42,14 +42,19 @@ a{
     font-family: "Merriweather", serif;
 }
 form{
-    width: 400px;
+    width: 90%;
+    max-width: 400px;
     margin: var(--size-xxg) auto;
     font-size: var(--size-m);
 
 }
 #logo-container img{
-    width: 400px;
-    background-image: center;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    display: block;
+    margin: 0;
+    /* background-image: center; */
 }
 #title-container h2{
     font-size: var(--size-xxg);    
