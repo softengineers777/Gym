@@ -57,10 +57,10 @@ namespace GuayabitosMvc.Services
                 return (false, "Usuario o contraseña incorrectos", null);
             }
             
-            if (usuario.Activo == false)
+            if (usuario.Activo == false || usuario.Activo == null)
                 return (false, "Cuenta desactivada", null);
             
-            if (usuario.Bloqueado)
+            if (usuario.Bloqueado == true)
                 return (false, "Cuenta bloqueada", null);
             
             if (usuario.Intentos_Fallidos >= 5)
