@@ -1,0 +1,73 @@
+@model IEnumerable<GuayabitosMvc.Models.Usuarios>
+@{
+    ViewData["Title"] = "Usuarios";
+}
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.22.6/dist/bootstrap-table.min.css">
+<br>
+<div class="col-md-12">
+   <a href="/Usuarios/Create" class="btn btn-success" onclick="window.location.href='/Usuarios/Create'; return false;">
+    <i class="fa fa-plus me-2"></i> Nuevo Usuario
+</a>
+</div>
+
+<div class="content-wrapper">
+    <div class="container p-5 my-5 border">
+        <div class="table-responsive">
+            <table id="pagination" class="ui celled table table-striped table-hover" data-toggle="table"
+                   data-pagination="true" data-search="true" data-page-size="10" data-page-list="[5, 10, 25, 50, all]"
+                   data-locale="es-ES">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.IdUsuario)
+                        </th>
+                        <th>@Html.DisplayNameFor(model => model.IdEmpleado)</th>
+                        <th>@Html.DisplayNameFor(model => model.NombreUsuario)
+                        </th>
+                        <th>@Html.DisplayNameFor(model=> model.Contraseña_salt)</th>
+                        <th>@Html.DisplayNameFor(model=> model.Fecha_Creacion)</th>
+                        <th>@Html.DisplayNameFor(model=> model.ultimo_Acceso)</th>
+                        <th>@Html.DisplayNameFor(model=> model.Intentos_Fallidos)</th>
+                        <th>@Html.DisplayNameFor(model=> model.Bloqueado)</th>
+                        <th>@Html.DisplayNameFor(model=> model.debe_cambiar_contraseña)</th>
+                        <th>@Html.DisplayNameFor(model=> model.expriracion_contraseña)</th>
+                        <th>@Html.DisplayNameFor(model=> model.Activo)</th>
+                                <th>Acccion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.IdUsuario)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.IdEmpleado)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.NombreUsuario)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Contraseña_salt)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Fecha_Creacion)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.ultimo_Acceso)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Intentos_Fallidos)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.debe_cambiar_contraseña)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.expriracion_contraseña)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Activo)</td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.IdUsuario" class="btn btn-sm btn-warning">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <a asp-action="Details" asp-route-id="@item.IdUsuario" class="btn btn-sm btn-info">
+                                            <i class="fa fa-info-circle"></i>
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id="@item.IdUsuario" class="btn btn-sm btn-danger">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        @section Scripts {
+            <!-- Bootstrap Table JS -->
+            <script src="https://unpkg.com/bootstrap-table@1.22.6/dist/bootstrap-table.min.js"></script>
+            <script src="https://unpkg.com/bootstrap-table@1.22.6/dist/locale/bootstrap-table-es-ES.min.js"></script>
+        }
