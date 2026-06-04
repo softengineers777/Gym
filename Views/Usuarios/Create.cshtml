@@ -19,29 +19,35 @@
         <div class="card-body">
             <div class="container mt-3">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#myModal">Modal</button>
+                        data-bs-target="#myModal">Formulario de Creacion</button>
             </div>
-        </div>        
+        </div>
         <div class="modal" id="myModal">
             <div class="modal-dialog">
                 <div class="modal-content">
-
                     <!-- Modal Header -->
                     <div class="modal-header">
-                        <h4 class="modal-title">Modal Cabecera</h4>
+                        <h4 class="modal-title">Formulario Creacion</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
-
                     <!-- Modal body -->
                     <div class="modal-body">
-                        Modal body..
+                        <form action="create">
+                            <div class="container-fluid">
+                                <input type="text" class="form-control" placeholder="Ingresa Nombre Usuario">
+                                <input type="text" class="form-control" placeholder="Contraseña">
+                                <input type="date" class="form-control" placeholder="Fecha creacion">
+                            </div>
+                            <br>
+                            <button type="button" class="btn btn-primary">Guardar</button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="close">Cerrar</button>
+                        </form>
                     </div>
 
                     <!-- Modal footer -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                     </div>
-
                 </div>
             </div>
         </div>
