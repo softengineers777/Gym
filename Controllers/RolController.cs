@@ -100,11 +100,11 @@ namespace GuayabitosMvc.Controllers
         {
             return _context.Rol.Any(r => r.IdRol == id);
         }
-        [HttpGet]
-        public async Task<IActionResult>Delete(int? id)
-        {
+        // [HttpGet]
+        // public async Task<IActionResult>Delete(int? id)
+        // {
             
-        }
+        // }
 
 
     }
