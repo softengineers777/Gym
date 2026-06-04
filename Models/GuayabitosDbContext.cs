@@ -27,6 +27,7 @@ namespace GuayabitosMvc.Models
         public DbSet<MovimientoInventario> MovimientoInventario { get; set; }
         public DbSet<Usuarios> Usuarios { get; set; }
         public DbSet<Permisos> Permisos { get; set; }
+        public DbSet<Rol> Rol {get; set;}
 
 
     
@@ -142,6 +143,13 @@ namespace GuayabitosMvc.Models
                 entity.Property(p=>p.Nombre);
                 entity.Property(p=>p.Codigo);
                 entity.Property(p=>p.Descripcion);                
+            });
+            modelBuilder.Entity<Rol>(entity =>
+            {
+               entity.HasKey(r => r.IdRol);
+               entity.Property(r => r.Nombre); 
+               entity.Property(r => r.Descripcion); 
+               entity.Property(r => r.Nivel_Acceso); 
             });
         }
     }
