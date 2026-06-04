@@ -3,7 +3,7 @@ using GuayabitosMvc.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace GuayabitosMvcController
+namespace GuayabitosMvc.Controllers
 {
     public class UsuariosController : Controller
     {
@@ -39,7 +39,7 @@ namespace GuayabitosMvcController
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind(" IdUsuario,IdEmpleado,NombreUsuario,Contraseña_Hash,Fecha_Creacion,ultimo_Acceso, Intentos_Fallidos,Bloqueado,debe_cambiar_contraseña,expriracion_contraseña")] Usuarios usuarios)
+        public async Task<IActionResult> Create([Bind("IdUsuario,IdEmpleado,NombreUsuario,Contraseña_Hash,Fecha_Creacion,ultimo_Acceso, Intentos_Fallidos,Bloqueado,debe_cambiar_contraseña,expriracion_contraseña")] Usuarios usuarios)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace GuayabitosMvcController
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View();
+            return View(usuarios);
         }
         public bool UsuariosExists(int id)
         {
@@ -113,7 +113,7 @@ namespace GuayabitosMvcController
         }
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeletedConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var usuarios = await _context.Usuarios.FindAsync(id);
             if (usuarios == null)

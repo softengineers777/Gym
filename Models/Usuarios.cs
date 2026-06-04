@@ -26,9 +26,9 @@ namespace GuayabitosMvc.Models
         [Display(Name ="Intentos Fallidos")]
         public int Intentos_Fallidos {get; set;}
         [Display(Name ="Bloqueado")]
-        public bool Bloqueado {get; set;}
+        public bool? Bloqueado {get; set;}
         [Display(Name ="Cambiar contraseña")]
-        public bool debe_cambiar_contraseña {get; set;}
+        public bool? debe_cambiar_contraseña {get; set;}
         [Display(Name ="Expriracion contraseña")]
         public DateTime? expriracion_contraseña {get; set;}
          [Display(Name = "Activo")]
