@@ -47,9 +47,9 @@
       <span style="color: red;" class="red-text">@ViewData["permisos"]</span>
       <form asp-controller="Login" method="post" asp-action="Index" class="mb-3">
         <input type="hidden" id="returnUrl" name="returnUrl" value="" />
-        <div id="logo-container">
-          <img src="img/Nuevo_logo_1-removebg-preview.png" width="400" alt="">
-        </div>
+        @* <div id="logo-container">
+          <img src="~/img/copaalternativo.jpeg" width="400" alt="">
+        </div> *@
         <div id="title-container">
           <h2>
             Guayabito
@@ -71,37 +71,34 @@
           @* <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span> *@
 
           <div id="options-container">
-            <div>
-              <input type="checkbox" name="" id="remember-me">
-              <label for="form-check-label" form="remember-me"></label> Recordarme
+            <div class="remember-wrapper">
+              <input type="checkbox" id="remember-me" name="remember-me">
+              <label for="remember-me">Recordarme</label>
             </div>
-            <div class="right ">
-              <a
-                href="https://summitad.theelitegroup.com/adfs/ls/?SAMLRequest=nVNLj9MwEP4rlu952BSVWk2l0hWi0gJRGzjsZeV1JltL8QOPw5Z%2fj5O2qAe2SHuyNP5mvofHS5Sm92I9xIPdwc8BMJLtXUUf%2bbzjrOSLTD11i2ymykUmZ3yWMWjfA2ed%2fACckh8QUDtbUZ6XlGwRB9hajNLGVCo5zxjLSt6wuXg3F4w9UFIHF51y%2fUdtW22fKzoEK5xEjcJKAyiiEvv1l3uRJoqnEwjF56aps%2frbvqFkjQghJtKNszgYCHsIv7SC77v7ih5i9CiKAgfvXYh5PAD0OsJzcIPPlTPFfjBGx8eRYgfo0wzIJfojJUfTWxRTHrdV%2bbMFulqOaDHZDlf9t9vlxQBd%2fV%2fusriiOPF58TXN3N7VrtfqN%2fnkgpHxdUqWs6mi26yboAKM1P26bQMgpjz73r1sAsgIFY1hAEqKC9F5I6Cd9iMFHuEYycYZL4PG8d3hKFW8BHGN2vTJ5w66t8RyE6aEGkencp2OFxfacaVAJZVNkBbHIM%2bp%2fUvP6nT3ire%2ft9cfYvUH">Olvide
-                Mi contraseña</a>
-              </div>
+            <div class="forgot-wrapper">
+              <a href="#">Olvide Mi contraseña</a>
+            </div>
 
-            </div>
-            <div id="button-container">
-              <input type="submit" class="btn" value="LOGIN">
-            </div>
           </div>
-          <div id="resgister-container">
-            <span>No tienes cuenta?</span><a
-            href="https://summitad.theelitegroup.com/adfs/ls/?SAMLRequest=nVNLj9MwEP4rlu952BSVWk2l0hWi0gJRGzjsZeV1JltL8QOPw5Z%2fj5O2qAe2SHuyNP5mvofHS5Sm92I9xIPdwc8BMJLtXUUf%2bbzjrOSLTD11i2ymykUmZ3yWMWjfA2ed%2fACckh8QUDtbUZ6XlGwRB9hajNLGVCo5zxjLSt6wuXg3F4w9UFIHF51y%2fUdtW22fKzoEK5xEjcJKAyiiEvv1l3uRJoqnEwjF56aps%2frbvqFkjQghJtKNszgYCHsIv7SC77v7ih5i9CiKAgfvXYh5PAD0OsJzcIPPlTPFfjBGx8eRYgfo0wzIJfojJUfTWxRTHrdV%2bbMFulqOaDHZDlf9t9vlxQBd%2fV%2fusriiOPF58TXN3N7VrtfqN%2fnkgpHxdUqWs6mi26yboAKM1P26bQMgpjz73r1sAsgIFY1hAEqKC9F5I6Cd9iMFHuEYycYZL4PG8d3hKFW8BHGN2vTJ5w66t8RyE6aEGkencp2OFxfacaVAJZVNkBbHIM%2bp%2fUvP6nT3ire%2ft9cfYvUH">Registrate</a>
+          <div id="button-container">
+            <input type="submit" class="btn" value="LOGIN">
           </div>
-      
-          <script src="../assets/vendor/libs/jquery/jquery.js"></script>
-          <script src="../assets/vendor/libs/popper/popper.js"></script>
-          <script src="../assets/vendor/js/bootstrap.js"></script>
-          <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-          <script src="../assets/vendor/js/menu.js"></script>
-          <script src="../assets/js/main.js"></script>
-          <script async defer src="https://buttons.github.io/buttons.js"></script>
-        </form>
-      </div>
-      <div id="right-container">izquierda</div>
+        </div>
+        <div id="resgister-container">
+          <span>No tienes cuenta?</span><a>Registrate</a>
+        </div>
+
+        <script src="../assets/vendor/libs/jquery/jquery.js"></script>
+        <script src="../assets/vendor/libs/popper/popper.js"></script>
+        <script src="../assets/vendor/js/bootstrap.js"></script>
+        <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+        <script src="../assets/vendor/js/menu.js"></script>
+        <script src="../assets/js/main.js"></script>
+        <script async defer src="https://buttons.github.io/buttons.js"></script>
+      </form>
     </div>
-  </body>
+    <div id="right-container"></div>
+  </div>
+</body>
 
 </html>

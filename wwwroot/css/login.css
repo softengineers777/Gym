@@ -152,3 +152,83 @@ form{
     padding: var(--size-sm) 0;
     text-align: center;
 }
+
+/*============================================*/
+/* Responsive para tablets y moviles 
+/*============================================*/
+@media (max-width: 900px){
+    #left-container, #right-container{
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+    #right-container{
+        height: 200px;
+        background-size:contain;
+        order: -1;
+    }
+    form{
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+
+}
+/*Pantallas menores a  600px (Moviles) */
+@media (max-width: 600px){
+    #right-container{
+        display: none;
+    }
+    #logo-container h2{
+        font-size: 1.8rem;
+    }
+    .btn-google{
+        font-size: 0.9rem;
+        background-color: 20px;
+    }
+    #options-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    #options-container .left,
+    #options-container .right{
+        width: 100%;
+        text-align: center;
+    }
+    #options-container .right{
+        text-align: center;
+    }
+    /*Ajustes para el checkboxy label */
+    .remember-wrapper{
+        display: flex;
+        align-items: center;
+        gap: 8;        
+    }
+    .remember-wrapper label{
+        margin:0;
+        padding: 0;
+        cursor: pointer;
+    }
+    .remember-wrapper  input[type="checkbox"]
+    {
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+        margin: 0;
+    }
+    .forgot-wrapper a {
+        text-decoration: none;
+        cursor:pointer;
+    }
+    .forgot-wrapper a:hover{
+        text-decoration: underline;
+    }
+    
+
+
+    /* #options-container div{
+        display: block;
+        margin: 10px 0;
+    } */
+}
