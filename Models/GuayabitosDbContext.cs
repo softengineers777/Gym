@@ -28,6 +28,7 @@ namespace GuayabitosMvc.Models
         public DbSet<Usuarios> Usuarios { get; set; }
         public DbSet<Permisos> Permisos { get; set; }
         public DbSet<Rol> Rol {get; set;}
+        public DbSet<Rol_Permiso> Rol_Permiso {get; set;}
 
 
     
@@ -151,6 +152,13 @@ namespace GuayabitosMvc.Models
                entity.Property(r => r.Descripcion); 
                entity.Property(r => r.Nivel_Acceso); 
             });
+            modelBuilder.Entity <Rol_Permiso>(entity =>
+            {
+                entity.HasKey(rp => rp.IdRol_Permiso);
+                entity.Property(rp => rp.IdRol);
+                entity.Property(rp => rp.IdPermisos);
+            });
+
         }
     }
 }
