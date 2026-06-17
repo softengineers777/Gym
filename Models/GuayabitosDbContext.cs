@@ -29,6 +29,8 @@ namespace GuayabitosMvc.Models
         public DbSet<Permisos> Permisos { get; set; }
         public DbSet<Rol> Rol { get; set; }
         public DbSet<Mesas> Mesas { get; set; }
+        public DbSet<Pedidos_Cabecera> Pedidos_Cabecera {get; set;}
+        public DbSet<Pedidos_Detalle> Pedidos_Detalle { get; set; }
 
 
 
