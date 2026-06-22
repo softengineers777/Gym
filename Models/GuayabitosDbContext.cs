@@ -27,11 +27,18 @@ namespace GuayabitosMvc.Models
         public DbSet<MovimientoInventario> MovimientoInventario { get; set; }
         public DbSet<Usuarios> Usuarios { get; set; }
         public DbSet<Permisos> Permisos { get; set; }
+
         public DbSet<Rol> Rol {get; set;}
         public DbSet<Rol_Permiso> Rol_Permiso {get; set;}
 
+        
+        public DbSet<Mesas> Mesas { get; set; }
+        public DbSet<Pedidos_Cabecera> Pedidos_Cabecera {get; set;}
+        public DbSet<Pedidos_Detalle> Pedidos_Detalle { get; set; }
 
-    
+
+
+
 
 
 
@@ -125,32 +132,61 @@ namespace GuayabitosMvc.Models
             });
             modelBuilder.Entity<Usuarios>(entity =>
             {
-               entity.HasKey(u=> u.IdUsuario);
-               entity.Property(u => u.IdEmpleado); 
-               entity.Property(u => u.NombreUsuario); 
-               entity.Property(u => u.Contraseña_Hash); 
-               entity.Property(u => u.Contraseña_salt); 
-               entity.Property(u => u.Fecha_Creacion); 
-               entity.Property(u => u.ultimo_Acceso); 
-               entity.Property(u => u.Intentos_Fallidos); 
-               entity.Property(u => u.Bloqueado); 
-               entity.Property(u => u.debe_cambiar_contraseña); 
-               entity.Property(u => u.expriracion_contraseña); 
-               entity.Property(u => u.Activo); 
+                entity.HasKey(u => u.IdUsuario);
+                entity.Property(u => u.IdEmpleado);
+                entity.Property(u => u.NombreUsuario);
+                entity.Property(u => u.Contraseña_Hash);
+                entity.Property(u => u.Contraseña_salt);
+                entity.Property(u => u.Fecha_Creacion);
+                entity.Property(u => u.ultimo_Acceso);
+                entity.Property(u => u.Intentos_Fallidos);
+                entity.Property(u => u.Bloqueado);
+                entity.Property(u => u.debe_cambiar_contraseña);
+                entity.Property(u => u.expriracion_contraseña);
+                entity.Property(u => u.Activo);
             });
             modelBuilder.Entity<Permisos>(entity =>
             {
-                entity.HasKey(p=>p.IdPermisos);
-                entity.Property(p=>p.Nombre);
-                entity.Property(p=>p.Codigo);
-                entity.Property(p=>p.Descripcion);                
+                entity.HasKey(p => p.IdPermisos);
+                entity.Property(p => p.Nombre);
+                entity.Property(p => p.Codigo);
+                entity.Property(p => p.Descripcion);
             });
             modelBuilder.Entity<Rol>(entity =>
             {
-               entity.HasKey(r => r.IdRol);
-               entity.Property(r => r.Nombre); 
-               entity.Property(r => r.Descripcion); 
-               entity.Property(r => r.Nivel_Acceso); 
+                entity.HasKey(r => r.IdRol);
+                entity.Property(r => r.Nombre);
+                entity.Property(r => r.Descripcion);
+                entity.Property(r => r.Nivel_Acceso);
+            });
+            modelBuilder.Entity<Mesas>(entity =>
+            {
+                entity.HasKey(m => m.IdMesa);
+                entity.Property(m => m.NumeroMesa);
+                entity.Property(m => m.Capacidad);
+                entity.Property(m => m.Estado);
+                entity.Property(m => m.Activo);
+            });
+            modelBuilder.Entity<Pedidos_Cabecera>(entity =>
+            {
+                entity.HasKey(pc => pc.IdPedidos);
+                entity.Property(pc => pc.IdMesa);
+                entity.HasKey(pc => pc.IdEmpleado);
+                entity.HasKey(pc => pc.IdCliente);
+                entity.HasKey(pc => pc.FechaPedido);
+                entity.HasKey(pc => pc.Estado);
+                entity.HasKey(pc => pc.Total);
+                entity.HasKey(pc => pc.Observaciones);
+                entity.HasKey(pc => pc.Activo);
+            });
+            modelBuilder.Entity<Pedidos_Detalle>(entity =>{
+                entity.HasKey(pd => pd.IdDetallePedido);
+                entity.Property(pd =>pd.IdPedido); 
+                entity.Property(pd =>pd.IdProducto); 
+                entity.Property(pd =>pd.PrecioUnitario); 
+                entity.Property(pd =>pd.SubTotal); 
+                entity.Property(pd =>pd.Observaciones); 
+                entity.Property(pd =>pd.Estado); 
             });
             modelBuilder.Entity <Rol_Permiso>(entity =>
             {
